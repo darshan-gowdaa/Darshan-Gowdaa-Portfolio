@@ -451,6 +451,377 @@
 }
 
 /* ========================================
+   CURSOR STYLES
+   ======================================== */
+
+/* Interactive elements should have pointer cursor */
+button,
+a,
+[role="button"],
+.liquid-glass-primary,
+.liquid-glass-secondary,
+.liquid-glass-icon,
+.liquid-glass-shine,
+.liquid-glass-scroll,
+.skill-card,
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Text and non-interactive elements should have normal cursor */
+p,
+h1, h2, h3, h4, h5, h6,
+span,
+div:not([role="button"]):not(.cursor-pointer),
+.cursor-normal {
+  cursor: default;
+}
+
+/* Input elements should have text cursor */
+input,
+textarea,
+[contenteditable] {
+  cursor: text;
+}
+
+/* Disabled elements should have not-allowed cursor */
+button:disabled,
+input:disabled,
+textarea:disabled,
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ======================================== */
+
+/* Base mobile styles (320px and up) */
+@media (max-width: 640px) {
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .skill-card {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .cards-scroll-container {
+    padding: 1rem;
+    margin: -1rem;
+  }
+  
+  /* Typography adjustments for mobile */
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-6xl {
+    font-size: 3rem;
+  }
+  
+  /* Button adjustments */
+  .liquid-glass-primary,
+  .liquid-glass-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Navigation adjustments */
+  .mobile-menu {
+    width: 100vw;
+    max-width: 300px;
+  }
+  
+  /* Hero section mobile adjustments */
+  .hero-content {
+    padding: 1rem;
+  }
+  
+  /* Contact form mobile adjustments */
+  .contact-form {
+    padding: 1rem;
+  }
+  
+  /* Project cards mobile adjustments */
+  .project-card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Timeline mobile adjustments */
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .timeline-icon {
+    margin: 0 auto 1rem auto;
+  }
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+  .skill-card {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+  
+  .text-5xl {
+    font-size: 2rem;
+  }
+  
+  .text-6xl {
+    font-size: 2.5rem;
+  }
+  
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+  
+  .cards-scroll-container {
+    padding: 0.75rem;
+    margin: -0.75rem;
+  }
+  
+  /* Extra small mobile adjustments */
+  .hero-content {
+    padding: 0.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .hero-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Button adjustments for very small screens */
+  .liquid-glass-primary,
+  .liquid-glass-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Navigation adjustments */
+  .mobile-menu {
+    width: 100vw;
+    max-width: 280px;
+  }
+  
+  /* Timeline adjustments for very small screens */
+  .timeline-item {
+    padding: 0.5rem;
+  }
+  
+  .timeline-icon {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Tablet styles (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .skill-card {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    padding: 1.5rem;
+  }
+  
+  .cards-scroll-container {
+    padding: 2rem;
+    margin: -2rem;
+  }
+}
+
+/* Desktop styles (1025px and up) */
+@media (min-width: 1025px) {
+  .skill-card {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    padding: 2rem;
+  }
+  
+  .cards-scroll-container {
+    padding: 2.5rem;
+    margin: -2.5rem;
+  }
+}
+
+/* Large desktop styles (1440px and up) */
+@media (min-width: 1440px) {
+  .skill-card {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    padding: 2.5rem;
+  }
+}
+
+/* ========================================
+   MOBILE-SPECIFIC OPTIMIZATIONS
+   ======================================== */
+
+/* Touch-friendly button sizes */
+@media (max-width: 768px) {
+  button,
+  .liquid-glass-primary,
+  .liquid-glass-secondary,
+  .liquid-glass-icon {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve touch targets */
+  .skill-card {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for touch */
+  .flex.space-x-4 > * + * {
+    margin-left: 1rem;
+  }
+  
+  .flex.space-x-6 > * + * {
+    margin-left: 1.5rem;
+  }
+  
+  .flex.space-x-8 > * + * {
+    margin-left: 2rem;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Improve text readability on mobile */
+  p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Better mobile navigation */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    max-width: 300px;
+    background: rgba(17, 24, 39, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+  }
+  
+  /* Mobile-specific hero adjustments */
+  .hero-content h1 {
+    line-height: 1.2;
+  }
+  
+  /* Mobile project cards */
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Mobile timeline adjustments */
+  .timeline-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .timeline-icon {
+    margin: 0 auto 1rem auto;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-content {
+    padding: 0.5rem;
+  }
+  
+  .skill-card {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+/* Focus styles for keyboard navigation */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced {
+    border: 2px solid #ffffff;
+  }
+  
+  .text-gray-300 {
+    color: #ffffff;
+  }
+  
+  .text-gray-400 {
+    color: #e5e7eb;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-blink-slow,
+  .text-shine {
+    animation: none;
+  }
+  
+  .liquid-glass-card,
+  .liquid-glass-card-enhanced,
+  .liquid-glass-primary,
+  .liquid-glass-secondary,
+  .liquid-glass-icon,
+  .skill-card {
+    transition: none;
+  }
+}
+
+/* ========================================
    FALLBACK FOR BROWSERS WITHOUT BACKDROP-FILTER
    ======================================== */
 

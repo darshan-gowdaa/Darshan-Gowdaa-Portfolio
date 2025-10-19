@@ -168,7 +168,7 @@ const Hero = () => {
 
 
       {/* Content */}
-      <div className="z-10 max-w-3xl text-center px-6 mt-10">
+      <div className="z-10 max-w-3xl text-center px-2 sm:px-4 mt-10 hero-content">
         <animated.div style={titleAnimation} className="mb-4 mt-10">
           <span className="liquid-glass-badge inline-block bg-clip-text text-purple-200 bg-gradient-to-r from-purple-400 to-pink-400 font-medium px-4 py-1 rounded-full text-sm">
             Full-Stack Developer
@@ -176,7 +176,7 @@ const Hero = () => {
         </animated.div>
 
 
-        <animated.h1 style={titleAnimation} className="text-4xl md:text-6xl font-bold mb-4 mt-8 text-white whitespace-nowrap">
+        <animated.h1 style={titleAnimation} className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 mt-8 text-white">
           {renderTypedText()}
           {showExclamation && (
             <span className="inline-block animate-blink-slow">!</span>
@@ -184,13 +184,13 @@ const Hero = () => {
         </animated.h1>
 
 
-        <animated.p style={subtitleAnimation} className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        <animated.p style={subtitleAnimation} className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto px-2">
           <br/>
         I am a software developer and data analytics student with strong skills in the MERN stack, building full-stack web apps that solve real problems. My experience includes developing scalable systems and interactive platforms. I also have foundational knowledge in DevOps and cloud computing, helping deploy and manage applications efficiently. I enjoy working in teams and continuously learning to keep up with evolving technologies.
         </animated.p>
 
 
-        <animated.div style={buttonAnimation} className="flex flex-wrap justify-center gap-4 mb-12">
+        <animated.div style={buttonAnimation} className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-12 px-2">
           <a
             href="#projects"
             className="liquid-glass-primary group relative overflow-hidden px-8 py-3 rounded-full text-white font-medium transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2"
@@ -207,7 +207,7 @@ const Hero = () => {
         </animated.div>
 
 
-        <animated.div style={socialAnimation} className="flex justify-center space-x-6 mb-12">
+        <animated.div style={socialAnimation} className="flex justify-center space-x-4 sm:space-x-6 mb-12 px-2">
           <a
             href="https://github.com/darshan-gowdaa"
             target="_blank"

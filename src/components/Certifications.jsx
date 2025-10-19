@@ -87,8 +87,8 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-6 px-6 mt-20 mb-50" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="certifications" className="py-6 px-2 sm:px-4 mt-20 mb-50" ref={ref}>
+      <div className="max-w-5xl mx-auto">
         <animated.div style={titleAnimation} className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Certifications</h2>
           <div className="w-20 h-1 bg-purple-500 mx-auto"></div>
@@ -98,7 +98,7 @@ const Certifications = () => {
         </animated.div>
 
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 max-w-4xl">
             {certifications.map((cert, index) => (
               <CertificationCard key={index} {...cert} />
             ))}

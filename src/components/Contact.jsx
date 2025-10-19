@@ -278,14 +278,14 @@ const Contact = () => {
   });
 
   return (
-    <section id="contact" className="py-6 px-5" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-6 px-2 sm:px-4" ref={ref}>
+      <div className="max-w-6xl mx-auto">
         <animated.div style={titleAnimation} className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-purple-500 mx-auto"></div>
         </animated.div>
 
-        <div className="grid md:grid-cols-5 gap-12">
+        <div className="grid md:grid-cols-5 gap-6 lg:gap-8">
           <animated.div style={leftColAnimation} className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-6 inline-block relative">
               Contact Information
@@ -339,7 +339,7 @@ const Contact = () => {
           </animated.div>
 
           <animated.div style={rightColAnimation} className="md:col-span-3">
-            <div className="liquid-glass-card p-8 rounded-xl transition-all shadow-lg">
+            <div className="liquid-glass-card p-6 sm:p-8 rounded-xl transition-all shadow-lg contact-form">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
 
               {submitStatus === 'success' && (

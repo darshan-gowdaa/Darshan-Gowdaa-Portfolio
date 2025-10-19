@@ -15,9 +15,9 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white min-h-screen">
+    <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white min-h-screen overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="relative">
         <Hero />
         <About />
         <Skills />

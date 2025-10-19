@@ -17,8 +17,8 @@ const TimelineItem = ({ icon, title, period, organization, description, certific
   });
 
   return (
-    <animated.div ref={itemRef} style={slideIn} className="flex items-start relative w-full">
-      <div className="flex flex-col items-center mr-4 md:mr-6 flex-shrink-0 relative">
+    <animated.div ref={itemRef} style={slideIn} className="flex items-start relative w-full timeline-item">
+      <div className="flex flex-col items-center mr-4 md:mr-6 flex-shrink-0 relative timeline-icon">
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center z-10 text-white shadow-lg shadow-purple-600/30 flex-shrink-0 ring-4 ring-purple-500/20">
           {icon}
         </div>
@@ -93,8 +93,8 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-6 px-4 md:px-6 overflow-hidden" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="py-6 px-2 sm:px-4 overflow-hidden" ref={ref}>
+      <div className="max-w-5xl mx-auto">
         <animated.div style={titleAnimation} className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Experience & Education</h2>
           <div className="w-20 h-1 bg-purple-500 mx-auto"></div>

@@ -87,10 +87,18 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      {mobileMenuOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Menu */}
       <animated.div
         style={menuAnimation}
-        className="md:hidden fixed top-0 right-0 h-screen w-64 bg-gray-900 pt-20 px-6 shadow-lg"
+        className="md:hidden fixed top-0 right-0 h-screen w-64 bg-gray-900 pt-20 px-6 shadow-lg mobile-menu z-50"
       >
         <div className="flex flex-col space-y-6">
           {links.map((link) => (
