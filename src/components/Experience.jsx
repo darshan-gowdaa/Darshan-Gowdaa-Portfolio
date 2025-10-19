@@ -5,13 +5,9 @@ import { useSpring, animated } from '@react-spring/web';
 import { useInView } from 'framer-motion';
 import { FaBriefcase, FaGraduationCap, FaAward } from 'react-icons/fa';
 
-
-
 const TimelineItem = ({ icon, title, period, organization, description, certificateLink, isLast, index }) => {
   const itemRef = useRef(null);
   const itemInView = useInView(itemRef, { once: true, amount: 0.3 });
-
-
 
   const slideIn = useSpring({
     opacity: itemInView ? 1 : 0,
@@ -20,8 +16,6 @@ const TimelineItem = ({ icon, title, period, organization, description, certific
     delay: itemInView ? index * 150 : 0
   });
 
-
-
   return (
     <animated.div ref={itemRef} style={slideIn} className="flex items-start relative w-full">
       <div className="flex flex-col items-center mr-4 md:mr-6 flex-shrink-0 relative">
@@ -29,13 +23,16 @@ const TimelineItem = ({ icon, title, period, organization, description, certific
           {icon}
         </div>
         {!isLast && (
-          <div className="absolute top-12 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-purple-600 via-purple-500 to-pink-500/30 timeline-connector"></div>
+          <div 
+            className="w-0.5 bg-gradient-to-b from-purple-600 via-purple-500 to-pink-500/30 absolute top-12 left-1/2 -translate-x-1/2"
+            style={{ height: 'calc(100% + 2rem)' }}
+          ></div>
         )}
       </div>
-      <div className="liquid-glass-card rounded-xl p-4 md:p-6 mb-8 md:mb-10 transition-all shadow-lg shadow-black/5 hover:shadow-purple-500/10 flex-1 min-w-0 overflow-hidden">
+      <div className="liquid-glass-card rounded-3xl p-4 md:p-6 mb-8 md:mb-10 transition-all shadow-lg shadow-black/5 hover:shadow-purple-500/10 flex-1 min-w-0 overflow-hidden">
         <h3 className="text-lg md:text-xl font-bold mb-2 text-white break-words">{title}</h3>
         <p className="text-sm md:text-base text-gray-200 mb-3 break-words">{organization}</p>
-        <p className="text-xs md:text-sm text-purple-500 mb-3 font-medium">{period}</p>
+        <p className="text-xs md:text-sm text-purple-200 mb-3 font-medium">{period}</p>
         <p className="text-sm md:text-base text-gray-300 leading-relaxed break-words hyphens-auto">{description}</p>
         {certificateLink && (
           <div className="mt-4">
@@ -52,21 +49,15 @@ const TimelineItem = ({ icon, title, period, organization, description, certific
   );
 };
 
-
-
 const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-
 
   const titleAnimation = useSpring({
     opacity: isInView ? 1 : 0,
     transform: isInView ? 'translateY(0)' : 'translateY(20px)',
     config: { tension: 400, friction: 25 },
   });
-
-
 
   const timelineItems = [
     {
@@ -101,8 +92,6 @@ const Experience = () => {
     }
   ];
 
-
-
   return (
     <section id="experience" className="py-6 px-4 md:px-6 overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto">
@@ -113,8 +102,6 @@ const Experience = () => {
             My professional journey and academic background that have shaped my skills and expertise in web development.
           </p>
         </animated.div>
-
-
 
         <div className="relative overflow-hidden">
           {timelineItems.map((item, index) => (
@@ -130,7 +117,5 @@ const Experience = () => {
     </section>
   );
 };
-
-
 
 export default Experience;
