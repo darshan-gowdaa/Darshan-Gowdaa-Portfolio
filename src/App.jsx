@@ -1,8 +1,5 @@
 // src/App.jsx
 import React from 'react';
-import { useState, useRef } from 'react';
-import { useSpring, animated, config } from '@react-spring/web';
-import { useInView } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -13,10 +10,16 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+import './styles/shared.css';
+
+
 function App() {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white min-h-screen overflow-x-hidden">
+      {/* Navigation */}
       <Navbar />
+
+      {/* Main Content */}
       <main className="relative">
         <Hero />
         <About />
@@ -26,6 +29,8 @@ function App() {
         <Certifications />
         <Contact />
       </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

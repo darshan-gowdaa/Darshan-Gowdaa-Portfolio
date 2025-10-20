@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useCallback, useMemo } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -9,111 +9,120 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navAnimation = useSpring({
-    to: {
-      background: isScrolled ? 'rgba(17, 24, 39, 0.95)' : 'rgba(17, 24, 39, 0)',
-      boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
-      height: isScrolled ? '70px' : '90px',
-    },
-    config: { tension: 220, friction: 30 },
+    background: isScrolled ? 'rgba(17, 24, 39, 0.95)' : 'rgba(17, 24, 39, 0)',
+    boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : '0 0 0 0 rgba(0, 0, 0, 0)',
+    transform: isScrolled ? 'translate3d(0,0,0)' : 'translate3d(0,0,0)',
+    height: isScrolled ? '64px' : '80px',
+    config: { tension: 280, friction: 30 },
   });
 
-  const links = ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'];
+  const links = useMemo(() => ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'], []);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const section = document.getElementById(sectionId.toLowerCase());
     if (section) {
+      const offset = sectionId.toLowerCase() === 'home' ? 0 : 80;
       window.scrollTo({
-        top: section.offsetTop - 80,
+        top: section.offsetTop - offset,
         behavior: 'smooth',
       });
     }
     setMobileMenuOpen(false);
-  };
+  }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileMenuOpen(false);
+  }, []);
 
   const menuAnimation = useSpring({
-    transform: mobileMenuOpen ? 'translateX(0%)' : 'translateX(100%)',
+    transform: mobileMenuOpen ? 'translate3d(0,0,0)' : 'translate3d(100%,0,0)',
     opacity: mobileMenuOpen ? 1 : 0,
-    config: { tension: 300, friction: 20 },
+    config: { tension: 280, friction: 22 },
   });
 
   return (
-    <animated.nav
-      style={navAnimation}
-      className="fixed top-0 left-0 w-full z-50 transition-all px-6"
-    >
-      <div className="max-w-6xl mx-auto flex justify-between items-center h-full">
-        <animated.div
-          className="text-xl font-bold cursor-pointer"
-          onClick={() => scrollToSection('home')}
-        >
-          <span className="text-purple-400">Darshan</span>
-          <span className="text-white"> Gowda</span>
-        </animated.div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          {links.map((link) => (
-            <button
-              key={link}
-              onClick={() => scrollToSection(link)}
-              className="text-gray-300 hover:text-purple-400 transition-colors relative group text-sm uppercase tracking-wider"
-            >
-              {link}
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white p-2 hover:text-purple-400 transition-colors"
+    <>
+      <animated.nav
+        style={navAnimation}
+        className="fixed top-0 left-0 w-full z-50 transition-all px-4 sm:px-6 backdrop-blur-md"
+      >
+        <div className="max-w-6xl mx-auto flex justify-between items-center h-full">
+          <animated.div
+            className="text-lg sm:text-xl font-bold cursor-pointer select-none"
+            onClick={() => scrollToSection('home')}
+            style={{ outline: 'none', WebkitTapHighlightColor: 'transparent' }}
           >
-            {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            <span className="text-purple-400">Darshan</span>
+            <span className="text-white"> Gowda</span>
+          </animated.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-6 lg:space-x-8">
+            {links.map((link) => (
+              <button
+                key={link}
+                onClick={() => scrollToSection(link)}
+                className="text-gray-300 hover:text-purple-400 transition-colors relative group text-xs lg:text-sm uppercase tracking-wider py-2 select-none"
+                style={{ outline: 'none', WebkitTapHighlightColor: 'transparent' }}
+              >
+                {link}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden text-white p-2 hover:text-purple-400 transition-colors touch-manipulation active:scale-95 select-none"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            style={{ outline: 'none', WebkitTapHighlightColor: 'transparent' }}
+          >
+            {mobileMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
-      </div>
+      </animated.nav>
 
       {/* Mobile Menu Backdrop */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-          onClick={() => setMobileMenuOpen(false)}
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          onClick={closeMobileMenu}
         />
       )}
 
       {/* Mobile Menu */}
       <animated.div
         style={menuAnimation}
-        className="md:hidden fixed top-0 right-0 h-screen w-64 bg-gray-900 pt-20 px-6 shadow-lg mobile-menu z-50"
+        className="md:hidden fixed top-0 right-0 h-screen w-72 sm:w-80 bg-gray-900/95 backdrop-blur-lg pt-20 px-6 shadow-2xl z-50"
       >
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-4">
           {links.map((link) => (
             <button
               key={link}
               onClick={() => scrollToSection(link)}
-              className="text-gray-300 hover:text-purple-400 transition-colors text-lg py-2 border-b border-gray-800 uppercase tracking-wider"
+              className="text-gray-300 hover:text-purple-400 active:text-purple-500 transition-colors text-base sm:text-lg py-3 border-b border-gray-800 uppercase tracking-wider text-left touch-manipulation select-none"
+              style={{ outline: 'none', WebkitTapHighlightColor: 'transparent' }}
             >
               {link}
             </button>
           ))}
         </div>
       </animated.div>
-    </animated.nav>
+    </>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
